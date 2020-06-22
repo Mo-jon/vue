@@ -54,7 +54,7 @@ export default {
           this.$router.push(`/`);
         })
         .catch(error => {
-          console.error("服务器异常",error);
+          console.error("服务器异常", error);
         });
     },
     // 验证输入是否为空
@@ -78,9 +78,7 @@ export default {
 .login {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100vw;
-  height: 100vh;
 
   .form {
     display: flex;
@@ -89,7 +87,7 @@ export default {
     align-items: center;
     max-width: 300px;
 
-    &>* {
+    & > * {
       width: 100%;
       margin: 10px 0;
     }

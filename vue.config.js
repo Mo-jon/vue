@@ -9,6 +9,7 @@ console.log(
 module.exports = {
   publicPath: './', // 相对于 HTML 页面（目录相同）
   outputDir: 'dist',
+  lintOnSave: process.env.NODE_ENV == 'development',
   devServer: {},
   css: {
     loaderOptions: {
@@ -23,11 +24,12 @@ module.exports = {
       }
     }
   },
-  configureWebpack: () => {
+  configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
+      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true // 去掉console.log()
     } else {
       // 为开发环境修改配置...
     }
-  }
+  },
 }

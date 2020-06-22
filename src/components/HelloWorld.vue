@@ -2,6 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
+    <p>This is a subscriptions variable:</p>
+
     <!-- 全局变量 -->
     <p>这里有全局样式、全局 scss 变量的使用</p>
 
@@ -11,10 +13,16 @@
 </template>
 
 <script>
+
 export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  data() {
+    return {};
+  },
+  mounted() {
   }
 };
 </script>
