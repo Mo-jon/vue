@@ -1,5 +1,10 @@
 <template>
   <div class="login">
+    <div id="nav">
+      <router-link to="/home">Home</router-link>|
+      <router-link to="/login">Login</router-link>|
+      <router-link to="/demo">Demo</router-link>
+    </div>
     <div class="form">
       <input placeholder="请输入手机号" v-model="phone" clearable />
       <div class="sms-code">
@@ -79,6 +84,8 @@ export default {
   display: flex;
   justify-content: center;
   width: 100vw;
+  flex-direction: column;
+  align-items: center;
 
   .form {
     display: flex;

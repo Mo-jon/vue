@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
@@ -20,7 +24,14 @@ const routes = [{
   {
     path: '/demo',
     name: 'Demo',
-    component: () => import('../views/Demo.vue')
+    component: () => import( /* webpackChunkName: "demo" */ '../views/Demo.vue')
+  },
+  // 这个404路由有顺序问题，必须放在最后
+  {
+    path: "*",
+    name: '404',
+    component: () => import( /* webpackChunkName: "404" */ '../views/404.vue'),
+    // redirect: "/"
   }
 ]
 

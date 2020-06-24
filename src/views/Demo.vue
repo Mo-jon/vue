@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div id="nav">
+      <router-link to="/home">Home</router-link>|
+      <router-link to="/login">Login</router-link>|
+      <router-link to="/demo">Demo</router-link>
+    </div>
     <span v-pre>{{ this will not be compiled }}</span>
     <text-document v-bind.sync="doc" :syncText.sync="syncText"></text-document>
     <p>使用 vuex: {{JSON.stringify(userInfo)}}</p>
@@ -8,7 +13,7 @@
       <li v-for="item in cityList" :key="item.id" @click="changeCity(item.id)">{{item.name}}</li>
     </ul>
     <P>城市切换：{{JSON.stringify(nowCity)}}</P>
-    <hr>
+    <hr />
     <p>当前时间：{{nowDate}}</p>
   </div>
 </template>
@@ -40,9 +45,9 @@ export default {
     nowCity() {
       return this.$store.state.city.nowCity;
     },
-    nowDate(){
+    nowDate() {
       // 时间格式化
-      return new Date().format('yyyy-MM-dd hh:mm:ss')
+      return new Date().format("yyyy-MM-dd hh:mm:ss");
     }
   },
   methods: {
