@@ -13,7 +13,7 @@
 
 <script>
 import sendSms from "@/directives/sendSms";
-import LocalStorage from "@/services/localStorage";
+import LocalStorage from "@/store/localStorage";
 import Api from "@/services/api";
 export default {
   name: "Login",

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Qs from 'qs'
-import LocalStorage from "./localStorage";
+import LocalStorage from "@/store/localStorage";
 
 export default class HttpClass {
   constructor() {

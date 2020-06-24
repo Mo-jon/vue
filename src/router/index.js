@@ -30,4 +30,9 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  console.log('[路由守卫]', to, from)
+  next()
+})
+
 export default router
