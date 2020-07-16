@@ -27,7 +27,7 @@ module.exports = {
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
-      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true // 去掉console.log()
+      // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true // 去掉console.log()
     } else {
       // 为开发环境修改配置...
     }

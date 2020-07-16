@@ -1,12 +1,9 @@
 <template>
-  <div class="login">
-    <div id="nav">
-      <router-link to="/home">Home</router-link>|
-      <router-link to="/login">Login</router-link>|
-      <router-link to="/demo">Demo</router-link>
-    </div>
+  <div class="container">
+    <Nav></Nav>
     <div class="form">
-      <input placeholder="请输入手机号" v-model="phone" clearable />
+      <input placeholder="请输入账号" v-model="phone" clearable />
+      <input placeholder="请输入密码" v-model="passsword" clearable />
       <div class="sms-code">
         <input placeholder="请输入验证码" v-model="smsCode" />
         <button v-sendSms="phone" @click="isEmpty(phone,'请填写手机号码')">验证码</button>
@@ -17,14 +14,18 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav";
 import sendSms from "@/directives/sendSms";
-import LocalStorage from "@/store/localStorage";
 import Api from "@/services/api";
 export default {
   name: "Login",
+  components: {
+    Nav
+  },
   data() {
     return {
       phone: "",
+      passsword: "",
       smsCode: ""
     };
   },
@@ -41,22 +42,22 @@ export default {
       ) {
         return;
       }
-      console.log("[登录] phone:", this.phone, "smsCode:", this.smsCode);
+      console.log("[登录]", this.phone, this.passsword, this.smsCode);
       // 保存登录信息，跳转主控制台
       // this.$store.commit("login");
-      Api.login(this.phone, this.smsCode)
+      Api.login(this.phone, this.passsword)
         .then(result => {
           if (result.error) {
             console.error(result.message);
             return;
           }
           console.log("登录成功", result);
-          LocalStorage.login({
+          this.$store.commit("login", {
             account: result.data.admin_name,
             nextTime: result.data.admin_next_time,
             token: result.data.admin_token
           });
-          this.$router.push(`/`);
+          this.$router.push(`/demo`);
         })
         .catch(error => {
           console.error("服务器异常", error);
@@ -80,7 +81,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.login {
+.container {
   display: flex;
   justify-content: center;
   width: 100vw;

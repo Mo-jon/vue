@@ -1,14 +1,10 @@
 <template>
   <div class="container">
-    <div id="nav">
-      <router-link to="/home">Home</router-link>|
-      <router-link to="/login">Login</router-link>|
-      <router-link to="/demo">Demo</router-link>
-    </div>
+    <Nav></Nav>
     <span v-pre>{{ this will not be compiled }}</span>
-    <text-document v-bind.sync="doc" :syncText.sync="syncText"></text-document>
-    <p>使用 vuex: {{JSON.stringify(userInfo)}}</p>
-    <button @click="updateUserInfo()">更新vuex</button>
+    <TextDocument v-bind.sync="doc" :syncText.sync="syncText"></TextDocument>
+    <p>使用 vuex: {{JSON.stringify(user)}}</p>
+    <button @click="updataUser()">更新vuex</button>
     <ul>
       <li v-for="item in cityList" :key="item.id" @click="changeCity(item.id)">{{item.name}}</li>
     </ul>
@@ -19,11 +15,13 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav";
 import TextDocument from "@/components/Test";
 export default {
-  name: "ComponentName",
+  name: "Demo",
   components: {
-    "text-document": TextDocument
+    Nav,
+    TextDocument
   },
   data() {
     return {
@@ -36,8 +34,8 @@ export default {
     };
   },
   computed: {
-    userInfo() {
-      return this.$store.state.userInfo;
+    user() {
+      return this.$store.state.user;
     },
     cityList() {
       return this.$store.state.city.list;
@@ -51,8 +49,8 @@ export default {
     }
   },
   methods: {
-    updateUserInfo() {
-      this.$store.dispatch("updataUserInfo");
+    updataUser() {
+      this.$store.dispatch("updataUser");
     },
     changeCity(id) {
       console.log("切换城市", id);

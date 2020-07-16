@@ -1,24 +1,5 @@
 class LocalStorage {
-  constructor() {
-    // 未登录(user==null)
-    this.user = JSON.parse(localStorage.getItem(name));
-    console.log("localStorage-->user", this.user);
-  }
-
-  /**
-   * 登录
-   * @param {object} user 登录信息
-   */
-  login(user) {
-    this.set("user", user);
-  }
-
-  /**
-   * 登出
-   */
-  logout() {
-    this.remove("user");
-  }
+  constructor() {}
 
   /**
    * 存储数据n

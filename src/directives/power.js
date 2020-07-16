@@ -8,8 +8,8 @@ import store from '../store'
 Vue.directive('right', {
   inserted: function (el, binding) {
     // 当前用户权限
-    const userInfo = store.getters.getUserInfo();
-    const powerArr = userInfo.Role ? userInfo.Role.Rights.split(',') : [];
+    const user = store.state.user;
+    const powerArr = user.Role ? user.Role.Rights.split(',') : [];
     powerArr.push('', null, undefined);
     // 查询权限
     const value = binding.value;
@@ -26,16 +26,16 @@ Vue.directive('right', {
 Vue.directive('business', {
   inserted: function (el, binding) {
     // 当前用户信息
-    const userInfo = store.getters.getUserInfo();
+    const user = store.state.user;
     // 查询权限
     let value = binding.value;
     let result = false;
     switch (typeof value) {
       case 'object':
-        result = value.indexOf(userInfo.Business) != -1;
+        result = value.indexOf(user.Business) != -1;
         break;
       case 'number':
-        result = userInfo.Business === value;;
+        result = user.Business === value;;
         break;
     }
     console.log('[v-business权限]', value, result);
