@@ -21,16 +21,16 @@ export default {
   name: "Demo",
   components: {
     Nav,
-    TextDocument
+    TextDocument,
   },
   data() {
     return {
       doc: {
         title: "标题",
-        text: "这是一个用 v-bind.sync 来处理多个 props 的做法"
+        text: "这是一个用 v-bind.sync 来处理多个 props 的做法",
       },
       syncText: "传入一个 sync 数据",
-      cityId: 0
+      cityId: 0,
     };
   },
   computed: {
@@ -46,7 +46,7 @@ export default {
     nowDate() {
       // 时间格式化
       return new Date().format("yyyy-MM-dd hh:mm:ss");
-    }
+    },
   },
   methods: {
     updataUser() {
@@ -55,13 +55,13 @@ export default {
     changeCity(id) {
       console.log("切换城市", id);
       this.$store.commit("setNowCity", id);
-    }
+    },
   },
   mounted() {
     console.log("-->", this.$store.getters.getCity);
     // 使用工具类
     console.log("tool.getTime-->", this.$tool.getTime());
-  }
+  },
 };
 </script>
 

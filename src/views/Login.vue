@@ -6,7 +6,9 @@
       <input placeholder="请输入密码" v-model="passsword" clearable />
       <div class="sms-code">
         <input placeholder="请输入验证码" v-model="smsCode" />
-        <button v-sendSms="phone" @click="isEmpty(phone,'请填写手机号码')">验证码</button>
+        <button v-sendSms="phone" @click="isEmpty(phone, '请填写手机号码')">
+          验证码
+        </button>
       </div>
       <button @click="submit">登录</button>
     </div>
@@ -15,23 +17,43 @@
 
 <script>
 import Nav from "@/components/Nav";
-import sendSms from "@/directives/sendSms";
 import Api from "@/services/api";
 export default {
   name: "Login",
   components: {
-    Nav
+    Nav,
   },
   data() {
     return {
       phone: "",
       passsword: "",
-      smsCode: ""
+      smsCode: "",
     };
   },
   directives: {
     // 发送验证码
-    sendSms
+    sendSms(el, binding) {
+      el.onclick = () => {
+        console.log("directive sendSms", el, binding);
+        if (binding.value == null || binding.value == "") {
+          console.warn("[发送验证码]", "请填写手机号码");
+        } else {
+          console.log("[发送验证码]", binding.value);
+          // 设置倒计时
+          let time = 60;
+          const setTime = setInterval(() => {
+            el.disabled = time != 0;
+            if (time == 0) {
+              el.innerHTML = "验证码";
+              clearInterval(setTime);
+            } else {
+              el.innerHTML = time + "秒";
+              time--;
+            }
+          }, 1000);
+        }
+      };
+    },
   },
   methods: {
     // 提交登录
@@ -46,7 +68,7 @@ export default {
       // 保存登录信息，跳转主控制台
       // this.$store.commit("login");
       Api.login(this.phone, this.passsword)
-        .then(result => {
+        .then((result) => {
           if (result.error) {
             console.error(result.message);
             return;
@@ -55,11 +77,11 @@ export default {
           this.$store.commit("login", {
             account: result.data.admin_name,
             nextTime: result.data.admin_next_time,
-            token: result.data.admin_token
+            token: result.data.admin_token,
           });
           this.$router.push(`/demo`);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("服务器异常", error);
         });
     },
@@ -71,11 +93,11 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   mounted() {
     console.log("[$env]", this.$env);
-  }
+  },
 };
 </script>
 
