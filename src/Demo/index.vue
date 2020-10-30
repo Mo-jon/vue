@@ -2,6 +2,13 @@
   <div class="container">
     <Nav></Nav>
     <span v-pre>{{ this will not be compiled }}</span>
+
+    <!-- 全局变量 @/assets/styles/variables.scss 的 $theme-color-->
+    <p>这里有全局样式、全局 scss 变量的使用</p>
+
+    <!-- 全局样式 @/assets/styles/globals.scss 的 class="button" -->
+    <button class="button">按钮</button>
+
     <p>使用 vuex: {{ JSON.stringify(user) }}</p>
     <button @click="updataUser()">更新vuex</button>
     <ul>
@@ -19,7 +26,7 @@
       <template #header>slot-header内容</template>
       <p>默认slot内容</p>
       <template #footer="slotProps">
-        <hr/>
+        <hr />
         <b>slot-footer的prop</b>
         <p>Footer content ----{{ slotProps }}</p>
         <p>{{ slotProps.scope.text }}</p>
@@ -30,8 +37,8 @@
 
 <script>
 import Nav from "@/components/Nav";
-import TextDocument from "@/components/Test";
-import SlotUse from "@/components/SlotUse";
+import TextDocument from "./components/Test";
+import SlotUse from "./components/SlotUse";
 export default {
   name: "Demo",
   components: {
@@ -87,11 +94,16 @@ export default {
 };
 </script>
 
+<!-- Add "scoped" attribute to limit CSS to this component only (添加scoped表示只限组件内使用，不加作用于全局) -->
+<style lang='scss'>
+// 全局样式
+</style>
 <style scoped lang='scss'>
+// 组件样式
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  p {
+    // 全局变量 @/assets/styles/variables.scss 的 $theme-color
+    color: $theme-color;
+  }
 }
 </style>

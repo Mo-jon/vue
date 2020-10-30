@@ -10,23 +10,24 @@ const routes = [{
   {
     path: '/home',
     name: 'Home',
-    component: () => import('../views/Home.vue')
+    component: () => import('../views/Home')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/Login')
   },
+  // 测试页
   {
     path: '/demo',
     name: 'Demo',
-    component: () => import('../views/Demo.vue')
+    component: () => import('../Demo')
   },
-  // 这个404路由有顺序问题，必须放在最后
+  // 404页，必须放在最后 (有顺序问题)
   {
     path: "*",
     name: '404',
-    component: () => import( /* webpackChunkName: "404" */ '../views/404.vue'),
+    component: () => import( /* webpackChunkName: "404" */ '../views/404'),
     // redirect: "/"
   }
 ]
