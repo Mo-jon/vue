@@ -1,5 +1,5 @@
 # vue
-This is a project of vue
+This is a project of vue, suggested use yarn for run.
 
 ## Project setup
 ```
