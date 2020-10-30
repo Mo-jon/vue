@@ -25,5 +25,6 @@ export default {
 <style scoped lang='scss'>
 .nav {
   display: flex;
+  background: yellow;
 }
 </style>
