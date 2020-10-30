@@ -33,5 +33,18 @@ npm run lint 或 yarn run lint
 process.env 或 $env
 ```
 
+### CSS set
+```
+Sass variable   @/assets/styles/variables.scss
+globals style   @/assets/styles/globals.scss
+reset style     @/assets/styles/reset.css
+```
+
+### Test page
+```
+route /demo
+path  @/Demo
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
