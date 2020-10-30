@@ -3,29 +3,29 @@ This is a project of vue
 
 ## Project setup
 ```
-npm install OR yarn install
+npm install OR yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve     OR yarn run serve     (default)
-npm run serve:dev OR yarn run serve:dev (development)
-npm run serve:pro OR yarn run serve:pro (production)
+npm run serve     OR yarn serve     (default)
+npm run serve:dev OR yarn serve:dev (development)
+npm run serve:pro OR yarn serve:pro (production)
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build OR yarn run build
+npm run build OR yarn build
 ```
 
 ### Run your tests
 ```
-npm run test OR yarn run test
+npm run test OR yarn test
 ```
 
 ### Lints and fixes files
 ```
-npm run lint OR yarn run lint
+npm run lint OR yarn lint
 ```
 
 ### Get environment variable
