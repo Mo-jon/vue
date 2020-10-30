@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {
-  City
-} from "./modules/city" // 引入城市模块
 import LocalStorage from './localStorage'
-
 Vue.use(Vuex)
+
+ // Vuex模块
+import City from "./modules/city"
 
 /**
  * vuex 使用注意事项

@@ -2,10 +2,9 @@
   <div class="container">
     <Nav></Nav>
     <div class="form">
-      <input placeholder="请输入账号" v-model="phone" clearable />
-      <input placeholder="请输入密码" v-model="passsword" clearable />
+      <input placeholder="手机号码" v-model="phone" clearable />
       <div class="sms-code">
-        <input placeholder="请输入验证码" v-model="smsCode" />
+        <input placeholder="验证码" v-model="smsCode" />
         <button v-sendSms="phone" @click="isEmpty(phone, '请填写手机号码')">
           验证码
         </button>

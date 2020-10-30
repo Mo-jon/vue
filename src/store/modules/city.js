@@ -1,4 +1,4 @@
-export const City = {
+const City = {
     // 属性
     state: {
         list: [{
@@ -31,3 +31,5 @@ export const City = {
     // Action 提交的是 mutation，不直接变更状态(可以使 mutations 方法异步执行); 比如调用后台数据 api
     actions: {}
 }
+
+export default City;

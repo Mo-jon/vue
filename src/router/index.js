@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -11,28 +10,17 @@ const routes = [{
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (login.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import( /* webpackChunkName: "login" */ '../views/Login.vue')
-  },
-  {
-    path: '/list',
-    name: 'List',
-    // route level code-splitting
-    // this generates a separate chunk (login.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import( /* webpackChunkName: "login" */ '../views/List.vue')
+    component: () => import('../views/Login.vue')
   },
   {
     path: '/demo',
     name: 'Demo',
-    component: () => import( /* webpackChunkName: "demo" */ '../views/Demo.vue')
+    component: () => import('../views/Demo.vue')
   },
   // 这个404路由有顺序问题，必须放在最后
   {
