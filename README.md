@@ -1,36 +1,36 @@
 # vue
-这是一个vue学习项目
+This is a project of vue
 
 ## Project setup
 ```
-npm install 或 yarn install
+npm install OR yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve     或 yarn run serve     (默认)
-npm run serve:dev 或 yarn run serve:dev (开发)
-npm run serve:pro 或 yarn run serve:pro (正式)
+npm run serve     OR yarn run serve     (default)
+npm run serve:dev OR yarn run serve:dev (development)
+npm run serve:pro OR yarn run serve:pro (production)
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build 或 yarn run build
+npm run build OR yarn run build
 ```
 
 ### Run your tests
 ```
-npm run test 或 yarn run test
+npm run test OR yarn run test
 ```
 
 ### Lints and fixes files
 ```
-npm run lint 或 yarn run lint
+npm run lint OR yarn run lint
 ```
 
 ### Get environment variable
 ```
-process.env 或 $env
+process.env OR $env
 ```
 
 ### CSS set
