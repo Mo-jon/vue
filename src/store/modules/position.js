@@ -1,4 +1,4 @@
-const City = {
+const position = {
     // 属性
     state: {
         list: [{
@@ -14,22 +14,19 @@ const City = {
                 name: '南宁'
             }
         ],
-        nowCity: {}
+        city: {}
     },
     // 计算属性
     getters: {},
     // 方法(限制异步)
     mutations: {
-        setNowCity(state, id) {
-            for (let item of state.list) {
-                if (item.id == id) {
-                    state.nowCity = item
-                }
-            }
+        setPosition(state, data) {
+            state.city = data
+            console.log("更新位置", state.city);
         }
     },
     // Action 提交的是 mutation，不直接变更状态(可以使 mutations 方法异步执行); 比如调用后台数据 api
     actions: {}
 }
 
-export default City;
+export default position;

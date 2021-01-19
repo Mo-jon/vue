@@ -10,17 +10,24 @@
     <button class="button">按钮</button>
 
     <p>使用 vuex: {{ JSON.stringify(user) }}</p>
-    <button @click="updataUser()">更新vuex</button>
+    <button @click="updateUser()">更新vuex, 执行updateUser</button>
     <ul>
-      <li v-for="item in cityList" :key="item.id" @click="changeCity(item.id)">
+      <li
+        v-for="item in cityList"
+        :key="item.id"
+        @click="changeCity(item)"
+      >
         {{ item.name }}
       </li>
     </ul>
-    <P>城市切换：{{ JSON.stringify(nowCity) }}</P>
+    <P>城市切换：{{ JSON.stringify(city) }}</P>
     <hr />
     <p>当前时间：{{ nowDate }}</p>
 
-    <TextDocument v-bind.sync="doc" :syncText.sync="syncText"></TextDocument>
+    <TextDocument
+      v-bind.sync="doc"
+      :syncText.sync="syncText"
+    ></TextDocument>
 
     <SlotUse :scope="slotData">
       <template #header>slot-header内容</template>
@@ -32,6 +39,8 @@
         <p>{{ slotProps.scope.text }}</p>
       </template>
     </SlotUse>
+
+    <button @click="sendProxy()">发送@deraw/vue-cli-plugin-proxy代理请求</button>
   </div>
 </template>
 
@@ -39,6 +48,8 @@
 import Nav from "@/components/Nav";
 import TextDocument from "./components/Test";
 import SlotUse from "./components/SlotUse";
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   name: "Demo",
   components: {
@@ -63,14 +74,13 @@ export default {
     };
   },
   computed: {
-    user() {
-      return this.$store.state.user;
-    },
+    // 导入city模块nowCity
+    ...mapState({
+      user: "user",
+      city: (state) => state.position.city,
+    }),
     cityList() {
-      return this.$store.state.city.list;
-    },
-    nowCity() {
-      return this.$store.state.city.nowCity;
+      return this.$store.state.position.list;
     },
     nowDate() {
       // 时间格式化
@@ -78,18 +88,24 @@ export default {
     },
   },
   methods: {
-    updataUser() {
-      this.$store.dispatch("updataUser");
+    updateUser() {
+      this.$store.dispatch("updateUser");
     },
-    changeCity(id) {
-      console.log("切换城市", id);
-      this.$store.commit("setNowCity", id);
+    changeCity(item) {
+      console.log("切换城市", item);
+      this.$store.commit("setPosition", item);
+    },
+    // 发送@deraw/vue-cli-plugin-proxy代理请求
+    sendProxy() {
+      console.log("发送@deraw/vue-cli-plugin-proxy代理请求", arguments);
+      axios.get("/baidu");
     },
   },
   mounted() {
-    console.log("-->", this.$store.getters.getCity);
+    // console.log("-->", this.city);
     // 使用工具类
     console.log("tool.getTime-->", this.$tool.getTime());
+    console.log("[$env]", this.$env);
   },
 };
 </script>

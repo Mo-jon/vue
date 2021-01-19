@@ -2,10 +2,25 @@
   <div class="container">
     <Nav></Nav>
     <div class="form">
-      <input placeholder="手机号码" v-model="phone" clearable />
+      <input
+        placeholder="手机号码"
+        v-model="phone"
+        clearable
+      />
+      <input
+        placeholder="密码"
+        v-model="passsword"
+        clearable
+      />
       <div class="sms-code">
-        <input placeholder="验证码" v-model="smsCode" />
-        <button v-sendSms="phone" @click="isEmpty(phone, '请填写手机号码')">
+        <input
+          placeholder="验证码"
+          v-model="smsCode"
+        />
+        <button
+          v-sendSms="phone"
+          @click="isEmpty(phone, '请填写手机号码')"
+        >
           验证码
         </button>
       </div>
@@ -16,7 +31,6 @@
 
 <script>
 import Nav from "@/components/Nav";
-import Api from "@/services/api";
 export default {
   name: "Login",
   components: {
@@ -63,16 +77,14 @@ export default {
       ) {
         return;
       }
-      console.log("[登录]", this.phone, this.passsword, this.smsCode);
       // 保存登录信息，跳转主控制台
-      // this.$store.commit("login");
-      Api.login(this.phone, this.passsword)
+      this.$api
+        .login(this.phone, this.passsword)
         .then((result) => {
           if (result.error) {
             console.error(result.message);
             return;
           }
-          console.log("登录成功", result);
           this.$store.commit("login", {
             account: result.data.admin_name,
             nextTime: result.data.admin_next_time,
@@ -93,9 +105,6 @@ export default {
         return false;
       }
     },
-  },
-  mounted() {
-    console.log("[$env]", this.$env);
   },
 };
 </script>

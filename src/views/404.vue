@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ComponentName',
+  name: '404Page',
   components: {
   },
   data() {

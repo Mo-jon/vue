@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <Nav></Nav>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="../assets/logo.png"
+    />
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <button @click="logout()">退出登录</button>
   </div>
 </template>
 
@@ -14,8 +18,14 @@ export default {
   name: "Home",
   components: {
     Nav,
-    HelloWorld
-  }
+    HelloWorld,
+  },
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 <style scoped lang='scss'>
