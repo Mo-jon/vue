@@ -21,20 +21,62 @@ export default class HttpClass {
   }
 
   /**
+   * 设置请求地址、钩子
+   * @param {*} url 请求地址
+   * @param {*} params 请求参数
+   * @returns 
+   * 请求配置sendConfig
+   * 请求前sendBefore
+   * 请求成功sendSuccess
+   * 请求失败sendError
+   * 请求结束sendEnd
+   */
+  setSend(url, params) {
+    url = this.joinPath(url, params);
+    return {
+      sendConfig: this.requestConfig(),
+      sendBefore: () => {
+        console.log("[请求前sendBefore]");
+      },
+      sendSuccess: (data) => {
+        console.log("[请求成功sendSuccess]",data);
+        if (data.code === 1) {
+          // 权限无效,清除登录信息
+          store.commit("logout")
+        }
+      },
+      sendError: (error) => {
+        console.log("[请求失败sendError]", error);
+      },
+      sendEnd: () => {
+        console.log("[请求结束sendEnd]");
+      }
+    };
+  }
+
+  /**
    * get请求
    * @param {string} url url路径
    * @param {object} params url参数
    */
   get(url, params) {
     return new Promise((resolve, reject) => {
-      const path = this.joinPath(url, params);
-      const requestConfig = this.requestConfig();
-      this.http.get(path, requestConfig).then((response) => {
-        this.power(response.data.code);
+      const {
+        sendConfig,
+        sendBefore,
+        sendSuccess,
+        sendError,
+        sendEnd
+      } = this.setSend(url, params);
+      sendBefore();
+      this.http.get(url, sendConfig).then((response) => {
+        sendSuccess(response.data);
         resolve(response.data);
       }).catch((error) => {
-        console.error(error);
+        sendError(error);
         reject(error);
+      }).finally(() => {
+        sendEnd();
       })
     })
   }
@@ -46,15 +88,23 @@ export default class HttpClass {
    * @param {object} params url参数
    */
   post(url, data, params) {
+    const {
+      sendConfig,
+      sendBefore,
+      sendSuccess,
+      sendError,
+      sendEnd
+    } = this.setSend(url, params);
+    sendBefore();
     return new Promise((resolve, reject) => {
-      const path = this.joinPath(url, params);
-      const requestConfig = this.requestConfig();
-      this.http.post(path, this.qs.stringify(data), requestConfig).then((response) => {
-        this.power(response.data.code);
+      this.http.post(url, this.qs.stringify(data), sendConfig).then((response) => {
+        sendSuccess(response.data);
         resolve(response.data);
       }).catch((error) => {
-        console.error(error);
+        sendError(error);
         reject(error);
+      }).finally(() => {
+        sendEnd();
       })
     })
   }
@@ -69,13 +119,5 @@ export default class HttpClass {
     }
     const path = url ? url + '?' + param.join('&') : this.defaultPath + '?' + param.join('&');
     return path;
-  }
-
-  // 检查权限
-  power(code) {
-    if (code === 1) {
-      // 权限无效,清除登录信息
-      store.commit("logout")
-    }
   }
 }
