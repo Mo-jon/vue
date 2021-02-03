@@ -16,8 +16,7 @@ class ApiClass extends HttpClass {
       'controller/login.php',
       {
         "name": account,
-        // "psw": Hash.hex_sha1(password),
-        "psw": password
+        "psw": Hash.hex_sha1(password),
       }
     );
   }

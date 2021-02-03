@@ -40,6 +40,14 @@
       </template>
     </SlotUse>
 
+    <AttrsUse
+      label="姓名"
+      class="name-input"
+      placeholder="请输入姓名"
+      @clickAttrs="clickAttrs"
+      style="padding:10px"
+    ></AttrsUse>
+
     <button @click="sendProxy()">发送@deraw/vue-cli-plugin-proxy代理请求</button>
   </div>
 </template>
@@ -48,6 +56,7 @@
 import Nav from "@/components/Nav";
 import TextDocument from "./components/Test";
 import SlotUse from "./components/SlotUse";
+import AttrsUse from "./components/AttrsUse";
 import axios from "axios";
 import { mapState } from "vuex";
 export default {
@@ -56,6 +65,7 @@ export default {
     Nav,
     TextDocument,
     SlotUse,
+    AttrsUse,
   },
   data() {
     return {
@@ -100,6 +110,10 @@ export default {
       console.log("发送@deraw/vue-cli-plugin-proxy代理请求", arguments);
       axios.get("/baidu");
     },
+    // 
+    clickAttrs(res){
+      console.log("[clickAttrs]", res);
+    }
   },
   mounted() {
     // console.log("-->", this.city);
