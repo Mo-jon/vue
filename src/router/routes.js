@@ -14,7 +14,8 @@ const routes = [{
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/Login')
+    // webpackChunkName：用于代码打包分割
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Login')
   },
   // 测试页
   {
