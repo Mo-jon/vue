@@ -8,9 +8,9 @@ npm install OR yarn
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve     OR yarn serve     (default)
-npm run serve:dev OR yarn serve:dev (development)
-npm run serve:pro OR yarn serve:pro (production)
+npm run dev OR yarn dev (development)
+npm run pro OR yarn pro (production)
+npm run build OR yarn build (build)
 ```
 
 ### Compiles and minifies for production
